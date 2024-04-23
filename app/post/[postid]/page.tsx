@@ -45,7 +45,7 @@ async function fetchPostComment(postId: string):Promise<CommentItem[]>{
   return dataParsed
 }
 
-export default async function Page({ params }: { params: { postid: string } }) {
+export default async function ArticleView({ params }: { params: { postid: string } }) {
   const resPost: PostItem = await fetchPostDetails(params.postid);
   const resPostImage: PhotoItem = await fetchPostImage(params.postid);
   const resWriter: UserItem = await fetchUserDetails(""+resPost.userId);
@@ -65,19 +65,19 @@ export default async function Page({ params }: { params: { postid: string } }) {
       <hr />
       <small>
         Writer: {resWriter.name} ({resWriter.email})<br />
-        Article actions: Update | Remove<br />
-        <Link href={"/"}>Back to Home  </Link>
+        <Link href={`/mod/${params.postid}`}>Modify Article</Link> | <Link href={"/"}>Back to Home</Link>
       </small>
       <hr />
     </Container>
     <Container>
       <h3>Comments:</h3>
       {resPostComment.map((item, index)=>{
+        const avatarId: string|number = item.id > 10 ? (""+item.id).slice(-1) : item.id
         return (
           <Card key={index} className="my-3">
             <CardBody>
               <div className="d-flex align-items-top flex-column flex-md-row">
-                <Image src={`/${item.id}.jpg`} alt="" className="rounded-circle" width={80} height={80} />
+                <Image src={`/${avatarId}.jpg`} alt="" className="rounded-circle" width={80} height={80} />
                 <div className="mt-3 mt-md-0 ms-md-3">
                   <CardText >{item.body}. {item.body}. {item.body}.</CardText>
                   <hr />
