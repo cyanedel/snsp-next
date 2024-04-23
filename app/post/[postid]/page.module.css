@@ -1,0 +1,11 @@
+.postcontainer{
+  height: 320px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  background-color: black;
+}
+
+.postimage{
+  object-fit: cover;
+}

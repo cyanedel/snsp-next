@@ -1,0 +1,9 @@
+.cover-container{
+  height: 320px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+.cover-img{
+  object-fit: cover;
+}
