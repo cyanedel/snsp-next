@@ -17,9 +17,9 @@ async function fetchPageCover(selectedIndex: number):Promise<PhotoItem>{
 }
 
 export default async function Home() {
-  const pageData: PostItem[] = await fetchPageData()
-  const pageCover: PhotoItem = await fetchPageCover(7)
-  const pageCover2: PhotoItem = await fetchPageCover(5)
+  const pageData:PostItem[] = await fetchPageData();
+  const pageCover:PhotoItem = await fetchPageCover(7);
+  const pageCover2:PhotoItem = await fetchPageCover(5);
   return (
     <main className="bg-light">
       <div className={`${styles["cover-container"]}`}>
