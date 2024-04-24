@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { debounce } from "lodash";
-import { Button, Row, Col
-  , Card, CardBody, CardTitle, CardText
-  , InputGroup, FormGroup, FormLabel, FormControl, Modal
-} from 'react-bootstrap';
+import { Button, FormGroup, FormLabel, FormControl, Modal } from 'react-bootstrap';
 import Link from "next/link";
 
 import styleModule from "./page.module.css"
@@ -27,15 +24,8 @@ export function ArticleEditForm({defaultFormData}: {defaultFormData: PostItem}):
     }
   }, [aTitle, aBody])
 
-  const onChangeTitle = (e: any) => {
-    console.log(e.target.value)
-    setATitle(e.target.value)
-  }
-
-  const onChangeBody = (e:any) => {
-    console.log(e.target.value)
-    setABody(e.target.value)
-  }
+  const onChangeTitle = (e:any) => { setATitle(e.target.value) }
+  const onChangeBody = (e:any) => { setABody(e.target.value) }
 
   function resetForm():void{
     location.reload()
@@ -61,7 +51,7 @@ export function ArticleEditForm({defaultFormData}: {defaultFormData: PostItem}):
       postId: defaultData.id
     }).then((res)=>{
       if(res.id){
-        setDefaultData(res) //Ideally should be re-pull from api. not setting it like this.
+        setDefaultData(res) //I was thinking to use this as default. But then I realised defaultValue of input can be set only once on load. So, Ideally should be refresh and pull new data from API.
         setShowModalConfirmUpdate(false)
         setShowModalNoticeUpdate(true)
         setShowReset(false)
@@ -93,7 +83,7 @@ export function ArticleEditForm({defaultFormData}: {defaultFormData: PostItem}):
     />
     <FormGroup className="my-3">
       <FormLabel>Article Title</FormLabel>
-      <FormControl defaultValue={aTitle} id="a-title" placeholder="Article title" onChange={debounce(onChangeTitle, 300)} />
+      <FormControl defaultValue={aTitle} placeholder="Article title" onChange={debounce(onChangeTitle, 300)} />
     </FormGroup>
     <FormGroup className="my-3">
       <FormLabel>Article Content</FormLabel>

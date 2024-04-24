@@ -9,3 +9,7 @@
 .postimage{
   object-fit: cover;
 }
+
+.htextarea{
+  height: 240px;
+}

@@ -6,6 +6,7 @@ import { Container, Card, CardBody, CardText } from "react-bootstrap";
 
 import styleModule from "./page.module.css"
 import { PostItem, UserItem, PhotoItem, CommentItem } from "@/component/interface";
+import { FormNewComment } from "./page.client";
 
 export async function generateMetadata( { params }: { params: { postid: string } }, parent: ResolvingMetadata ): Promise<Metadata> {
   const id = params.postid
@@ -88,6 +89,9 @@ export default async function ArticleView({ params }: { params: { postid: string
           </Card>
         )
       })}
+    </Container>
+    <Container>
+      <FormNewComment />
     </Container>
     </main>
   )
