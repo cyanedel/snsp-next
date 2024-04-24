@@ -90,9 +90,7 @@ export default async function ArticleView({ params }: { params: { postid: string
         )
       })}
     </Container>
-    <Container>
-      <FormNewComment />
-    </Container>
+    <FormNewComment postId={parseInt(params.postid)}/>
     </main>
   )
 }

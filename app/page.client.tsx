@@ -1,25 +1,16 @@
 'use client'
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Button, Row, Col
+import { Row, Col
   , Card, CardBody, CardTitle, CardText
   , InputGroup, FormControl
 } from 'react-bootstrap';
 import { filter, includes, debounce } from "lodash";
-import { PostItem, PhotoItem } from "@/component/interface";
+import { PostItem } from "@/component/interface";
 
-interface ButtonProps {
-  label?: string,
-  onClick?: ()=> void
-}
-
-export function ButtonDetail(props: ButtonProps){
-  return <Button onClick={props.onClick}>{props.label}</Button>
-}
-
-export function SectionContent(props: {pageData: PostItem[]}):JSX.Element{
+export function SectionContent({pageData}: {pageData: PostItem[]}):JSX.Element{
   const [filterString, setFilterString] = useState<string>("")
-  const [listPost, setListPost] = useState<PostItem[]>(props.pageData)
+  const [listPost, setListPost] = useState<PostItem[]>(pageData)
 
   const onFilterChange = (e: any) => {
     setFilterString(e.target.value)
@@ -28,9 +19,9 @@ export function SectionContent(props: {pageData: PostItem[]}):JSX.Element{
   useEffect(()=>{
     let newList: PostItem[] = [];
     if(filterString){
-      newList = filter(props.pageData, (item) => includes(item.title, filterString))
+      newList = filter(pageData, (item) => includes(item.title, filterString))
     } else {
-      newList = props.pageData
+      newList = pageData
     }
     setListPost(newList);
   }, [filterString])
